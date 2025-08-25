@@ -22,6 +22,33 @@ O script `schema.sql` contém a criação das tabelas e inserção de dados de e
 CREATE DATABASE imobiliaria;
 USE imobiliaria;
 
+CREATE TABLE Cliente (
+    id_cliente INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    cpf VARCHAR(11) UNIQUE NOT NULL,
+    telefone VARCHAR(20)
+);
+
+CREATE TABLE Imovel (
+    id_imovel INT AUTO_INCREMENT PRIMARY KEY,
+    endereco VARCHAR(150) NOT NULL,
+    tipo VARCHAR(50),
+    valor_aluguel DECIMAL(10,2) NOT NULL,
+    status VARCHAR(20) DEFAULT 'disponivel'
+);
+
+CREATE TABLE Contrato (
+    id_contrato INT AUTO_INCREMENT PRIMARY KEY,
+    id_imovel INT,
+    id_cliente INT,
+    valor DECIMAL(10,2) NOT NULL,
+    data_inicio DATE,
+    data_fim DATE,
+    status VARCHAR(20) DEFAULT 'ativo',
+    FOREIGN KEY (id_imovel) REFERENCES Imovel(id_imovel),
+    FOREIGN KEY (id_cliente) REFERENCES Cliente(id_cliente)
+);
+
 INSERT INTO Cliente (nome, cpf, telefone) VALUES
 ('João Silva', '12345678900', '1199999999'),
 ('Maria Souza', '98765432100', '1198888888');
