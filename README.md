@@ -68,6 +68,20 @@ FROM Contrato
 WHERE data_fim BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 30 DAY)
 AND status = 'ativo';
 ```
+### Como Executar
+1. Importar o projeto no seu IDE (Eclipse, IntelliJ ou NetBeans).
+2. Configurar o banco de dados:
+* Criar o banco rodando o script `schema.sql` no MySQL.
+* Ajustar usuário e senha no arquivo Database.java:
+```sql
+Connection conn = DriverManager.getConnection(
+    "jdbc:mysql://localhost:3306/imobiliaria",
+    "root", "sua_senha"
+);
+```
+3. Executar o programa:
+* Rodar a classe Main.
+* O menu aparecerá no terminal.
 ### Tabelas:
 * **Cliente** (id\_cliente, nome, cpf, telefone)
 * **Imovel** (id\_imovel, endereco, tipo, valor\_aluguel, status)
